@@ -1,6 +1,6 @@
 # P'tit Crolle
 
-<img title="MarkText logo" src="file:///home/dacru/Desktop/Git/ptit-crolle/doc/crolle.png" alt="Alt text" width="388" data-align="center">
+<img title="MarkText logo" src="https://github.com/DavidCruciani/ptit-crolle/blob/main/doc/crolle.png?raw=true" alt="Alt text" width="388" data-align="center">
 
 Flask application template
 
@@ -19,8 +19,6 @@ Flask application template
 - Flask-session for sessions
 
 - Some roles are already created
-
-
 
 ## Installation
 

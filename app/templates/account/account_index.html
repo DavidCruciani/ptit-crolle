@@ -1,0 +1,35 @@
+<!-- 
+    Author: David Cruciani
+-->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <div id="container">
+        <h1>
+            My Profile
+        </h1>
+
+        <hr>
+
+        <a class="btn btn-outline-success" href="/account/edit" type="button" style="margin-bottom: 10px;">Edit</a>
+        
+        <div style="background-color: whitesmoke;">
+            <div>
+                <h6 style="display: inline-block;">First name:</h6> <span>{{user.first_name}}</span>
+            </div>
+            <div>
+                <h6 style="display: inline-block;">Last name:</h6> <span>{{user.last_name}}</span>
+            </div>
+            <div>
+                <h6 style="display: inline-block;">Email:</h6> <span>{{user.email}}</span>
+            </div>
+            <div>
+                <h6 style="display: inline-block;">Api key:</h6> <span>{{user.api_key}}</span>
+            </div>
+        </div>
+
+    </div>
+        
+{% endblock %}

@@ -1,0 +1,29 @@
+<!--Main Navigation-->
+
+<div class="col-auto px-0" style="min-width: 180px;">
+    <div id="sidebar" class="collapse collapse-horizontal show border-end">
+        <div id="sidebar-nav" class="rounded-0 text-sm-start min-vh-100">
+            <div class="sidebar-menu-wrapper">
+                <a class="navbar-brand" style="margin-left: 60px;" href="/">
+                    <img src="{{ url_for('static',filename='image/crolle.png') }}" height="55" style="margin-top: 8px; margin-bottom: -10px;" alt="Crolle Logo"/>
+                </a>
+                <div class="list-group list-group-flush mx-3 mt-4">
+                    <a href="/" class="list-group-item list-group-item-action text-nowrap" aria-current="true">
+                        <i class="fa-solid fa-house fa-fw me-3"></i><span>Home</span>
+                    </a>
+                    <a style="margin-top: 30px;" href="/account" class="list-group-item list-group-item-action text-nowrap">
+                        <i class="fa-solid fa-user fa-fw me-3"></i><span>My profile</span>
+                    </a>
+                    {% if current_user.is_authenticated %}
+                        <a style="margin-top: 30px;" href="/account/logout" class="list-group-item list-group-item-action text-nowrap">
+                            <i class="fa-solid fa-door-open fa-fw me-3"></i><span>Logout</span>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Main Navigation-->

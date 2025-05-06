@@ -1,0 +1,126 @@
+<!-- Main Navigation -->
+<nav class="container navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 px-4 rounded-bottom">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <a href="/2" class="navbar-brand d-flex align-items-center">
+            <img src="{{ url_for('static', filename='image/crolle.png') }}" height="50" alt="RULEZET Logo" class="me-3">
+            <h4 class="mb-0 fw-bold text-primary">P'tit crolle</h4>
+        </a>
+
+        <!-- Navigation Menu -->
+        <ul class="navbar-nav ms-auto d-flex align-items-center">
+            <li class="nav-item mx-2">
+                <a href="/2" class="nav-link text-dark fw-semibold">
+                    <i class="fa-solid fa-house fa-fw me-1"></i> Home
+                </a>
+            </li>
+
+            <!-- Dropdown for Rules and Rule Proposal -->
+            <li class="nav-item mx-2">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle text-dark fw-semibold" type="button" id="rulesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-shield-halved fa-fw me-1"></i> Dropdown here
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="rulesDropdown">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fa-solid fa-list fa-fw me-2"></i> Entry 1
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fa-solid fa-circle-question fa-fw me-2"></i> Entry 2
+                            </a>    
+                        </li>
+                        {% if current_user.is_authenticated %}
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa-solid fa-lightbulb fa-fw me-2"></i> Auth Entry 1
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa-solid fa-user-shield fa-fw me-2"></i> Auth Entry 2
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa-solid fa-tags fa-fw me-2"></i> Auth Entry 3
+                                </a>    
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                
+            </li>
+
+            <li class="nav-item mx-2 position-relative">
+                <a href="#" class="nav-link d-flex align-items-center text-dark fw-semibold">
+                    <i class="fa-solid fa-envelope fa-fw me-1"></i>
+                    Requests                        
+                </a>
+            </li>
+
+
+            <!-- Profile Dropdown -->
+            <li class="nav-item dropdown mx-2">
+                {% if current_user.is_authenticated %}
+                <a class="nav-link dropdown-toggle text-dark fw-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user fa-fw me-1"></i> Authenticate user
+                </a>
+                {% else %}
+                    <a class="nav-link dropdown-toggle text-dark fw-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user fa-fw me-1"></i> My Profile
+                    </a>
+                {% endif %}
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded">
+                    {% if current_user.is_authenticated %}
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <i class="fa-solid fa-user fa-fw me-2 text-primary"></i> Profil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <i class="fa-solid fa-star fa-fw me-2 text-warning"></i> Favorite
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <i class="fa-solid fa-right-from-bracket fa-fw me-2 text-danger"></i> Logout
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <i class="fa-solid fa-user-plus fa-fw me-2 text-success"></i> Register
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <i class="fa-solid fa-right-to-bracket fa-fw me-2 text-primary"></i> Login
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script type="module">
+    const {createApp, ref, onMounted} = Vue
+    createApp({
+        delimiters: ['[[', ']]'],
+        setup() {
+
+            onMounted(() => {
+            });
+        
+            return {
+            }
+        },
+    }).mount('.navbar')
+</script>
+
+
+

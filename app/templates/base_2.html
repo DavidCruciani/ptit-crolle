@@ -28,16 +28,16 @@
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/jquery-ui.css') }}">
 
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/core.css') }}">
-        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/sidebar.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/sidebar_top.css') }}">
     </head>
 
     <body>
-        <div class="container-fluid">
-            <div class="row flex-nowrap">
-                {% include 'sidebar.html' %}
+        {% include 'sidebar_top.html' %}
+        <div class="d-flex flex-column min-vh-100">
+            <div class="flex-grow-1 container" id="main-container">
 
                 <!--Main layout-->
-                <main class="col ps-md-4 pt-2" id="main-container">
+                <main class="col ps-md-4 pt-2">
                     {% include 'macros/_flashes.html' %}
     
                     <div aria-live="polite" aria-atomic="true" class="">
@@ -58,7 +58,6 @@
                             </template>
                         </div>
                     </div>
-                    <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-decoration-none"><i class="fa-solid fa-bars-staggered"></i> Menu</a>
                     {# When extended, the content block contains all the html of the webpage #}
                     {% block content %}
                     {% endblock %}
@@ -82,7 +81,7 @@
             createApp({
                 delimiters: ['[[', ']]'],
                 setup() {}
-            }).mount('#main-container')
+            }).mount('.container-fluid')
         </script>
         {% endblock %}
         

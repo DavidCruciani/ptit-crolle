@@ -1,0 +1,13 @@
+
+.nav-link {
+    text-decoration: none !important;
+    color:black;
+}
+
+.nav-link:hover {
+    text-decoration: none !important;
+    color: #0d6efd !important; 
+}
+
+
+

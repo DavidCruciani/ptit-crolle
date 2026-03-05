@@ -2,7 +2,7 @@
 {% import 'macros/form_macros.html' as f %}
 
 {% block content %}
-<form action="" method="post">
+<form action="" method="post" class="edit-form-account">
     {{ form.hidden_tag() }}
     {% if not edit_mode %}
     {{form.user_id}}

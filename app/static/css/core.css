@@ -114,3 +114,9 @@ footer {
 #main-container {
     padding-bottom: 2rem;
 }
+
+/*------------------------------------------EDIT_FORM_ACCOUNT------------------------------------------*/
+
+.edit-form-account{
+    text-align: left !important;
+}

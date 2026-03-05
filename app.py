@@ -1,6 +1,6 @@
 from app import create_app, db
 import argparse
-from flask import render_template, request, Response
+from flask import render_template, request, Response, session
 import json
 import os
 from app.utils.init_db import create_admin
@@ -36,3 +36,4 @@ elif args.delete_db:
         db.drop_all()
 else:
     app.run(host=app.config.get("FLASK_URL"), port=app.config.get("FLASK_PORT"))
+

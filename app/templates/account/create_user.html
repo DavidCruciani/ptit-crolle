@@ -4,9 +4,6 @@
 {% block content %}
 <form action="" method="post">
     {{ form.hidden_tag() }}
-    {% if not edit_mode %}
-    {{form.user_id}}
-    {%endif%}
     <div class="modal-body">
         <div class="row">
             <div class="col">
@@ -33,7 +30,6 @@
         </div>
         <div class="mb-3" id="password-container">
             <label for="password" class="col-form-label">{{ form.password.label }}</label>
-            <span class="text-muted">(Leave blank to keep current password)</span>
             <div class="position-relative">
                 <div class="position-relative">
                     {{ form.password(class_="form-control pe-5", **{"v-model": "password"}) }}
@@ -87,6 +83,7 @@
     </div>
 </form>
 {% endblock %}
+
 {% block script %}
 <script type="module">
     const { createApp, ref } = Vue;

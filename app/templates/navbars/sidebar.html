@@ -1,0 +1,38 @@
+<!--Main Navigation-->
+<div id="sidebar" class="collapse collapse-horizontal show border-end">
+    <div id="sidebar-nav" class="rounded-0 text-sm-start min-vh-100">
+        <div class="sidebar-menu-wrapper">
+            <a class="navbar-brand" style="margin-left: 60px;" href="/">
+                <img src="{{ url_for('static',filename='image/crolle.png') }}" height="55"
+                    style="margin-top: 8px; margin-bottom: -10px;" alt="Crolle Logo" />
+            </a>
+            <div class="list-group list-group-flush mx-3 mt-4">
+                <a href="/" class="list-group-item list-group-item-action text-nowrap" aria-current="true">
+                    <i class="fa-solid fa-house fa-fw me-3"></i><span>Home</span>
+                </a>
+
+                {% if current_user.is_authenticated %}
+                <a href="/account" class="list-group-item list-group-item-action text-nowrap">
+                    <i class="fa-solid fa-user fa-fw me-3"></i><span>{{ current_user.username() }}</span>
+                </a>
+                <a href="/account/logout" class="list-group-item list-group-item-action text-nowrap">
+                    <i class="fa-solid fa-door-open fa-fw me-3"></i><span>Logout</span>
+                </a>
+                {% else %}
+                <a href="/account/login" class="list-group-item list-group-item-action text-nowrap">
+                    <i class="fa-solid fa-right-to-bracket fa-fw me-3"></i><span>Login</span>
+                </a>
+                <a href="/account/register" class="list-group-item list-group-item-action text-nowrap">
+                    <i class="fa-solid fa-user-plus fa-fw me-3"></i><span>Register</span>
+                </a>
+                {% endif %}
+                <button class="btn btn-link nav-link py-2 px-0 px-lg-2" id="bd-theme" type="button"
+                    onclick="toggleDarkMode()" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon" id="theme-icon"></i>
+                    <span class="d-lg-none ms-2">Changer le thème</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -36,5 +36,14 @@ def create_app():
     app.register_blueprint(home_blueprint, url_prefix="/")
     app.register_blueprint(account_blueprint, url_prefix="/account")
 
+    @app.context_processor
+    def inject_layout():
+        from flask import session
+        if session.get('ui_version') == 2:
+            layout = 'base_2.html'
+        else:
+            layout = 'base.html'
+        return dict(base_layout=layout)
+
     return app
     

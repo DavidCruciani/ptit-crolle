@@ -41,8 +41,6 @@ Edit `config.py`
 
 - `FLASK_PORT`: port for the instance
 
-- `MISP_MODULE`: url and port where misp-module is running
-
 ## Launch
 
 ```bash

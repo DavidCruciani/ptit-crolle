@@ -1,0 +1,65 @@
+#sidebar {
+    width: 240px;
+    background-color: var(--bg-body);
+    min-height: 100vh;
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+#sidebar .list-group-item {
+    background-color: transparent; 
+    color: var(--text-main);
+    border: none; 
+    border-radius: 8px;
+    margin: 2px 10px; 
+    transition: all 0.2s ease;
+}
+
+#sidebar .list-group-item:hover {
+    background-color: rgba(13, 110, 253, 0.08); 
+    color: #0d6efd;
+}
+
+[data-bs-theme="dark"] #sidebar .list-group-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #3d8bfd;
+}
+
+#sidebar .list-group-item.active {
+    background-color: var(--bg-floating);
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+
+#sidebar.collapsing {
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    opacity: 0;
+    display: block;
+    overflow: hidden;
+}
+
+
+#sidebar.collapse {
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+
+main#main-container {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+#sidebar:not(.show) ~ #main-container {
+    padding-left: 1.5rem !important; 
+}
+
+.sidebar-menu-wrapper {
+    width: 240px; 
+    transition: opacity 0.2s ease;
+}
+
+#sidebar.collapsing .sidebar-menu-wrapper,
+#sidebar:not(.show) .sidebar-menu-wrapper {
+    opacity: 0;
+}

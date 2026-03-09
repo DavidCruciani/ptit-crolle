@@ -1,0 +1,38 @@
+{% macro render_flashes(class, icon) %}
+{% with msgs = get_flashed_messages(category_filter=[class]) %}
+{% for msg in msgs %}
+{% set bootstrap_class = 'danger' if class == 'error' else class %}
+<div class="toast show align-items-center text-white bg-{{ bootstrap_class }} border-0 shadow-lg mb-2" role="alert"
+    aria-live="assertive" aria-atomic="true" style="min-width: 250px;">
+    <div class="d-flex">
+        <div class="toast-body d-flex align-items-center">
+            <i class="fa-solid {{ icon }} me-2"></i>
+            {{ msg }}
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+            aria-label="Close"></button>
+    </div>
+</div>
+{% endfor %}
+{% endwith %}
+{% endmacro %}
+
+<div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
+        {{ render_flashes('error', 'fa-circle-exclamation') }}
+        {{ render_flashes('warning', 'fa-triangle-exclamation') }}
+        {{ render_flashes('info', 'fa-circle-info') }}
+        {{ render_flashes('success', 'fa-circle-check') }}
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toasts = document.querySelectorAll('.toast');
+        toasts.forEach(toastEl => {
+            setTimeout(() => {
+                const toast = bootstrap.Toast.getOrCreateInstance(toastEl);
+                toast.hide();
+            }, 5000);
+        });
+    });
+</script>

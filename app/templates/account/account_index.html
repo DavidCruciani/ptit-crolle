@@ -1,35 +1,57 @@
-<!-- 
-    Author: David Cruciani
--->
-
-{% extends 'base.html' %}
-
+{% extends base_layout %}
 {% block content %}
-    
-    <div id="container">
-        <h1>
-            My Profile
-        </h1>
-
-        <hr>
-
-        <a class="btn btn-outline-success" href="/account/edit" type="button" style="margin-bottom: 10px;">Edit</a>
-        
-        <div style="background-color: whitesmoke;">
-            <div>
-                <h6 style="display: inline-block;">First name:</h6> <span>{{user.first_name}}</span>
+<div class="container  justify-content-center my-5">
+    <div class="card shadow border-0">
+        <div class="card-body p-4 bg-light rounded">
+            <div class="mb-4 border-bottom pb-3">
+                <h2 class="mb-3 fw-bold">
+                    Account Information
+                </h2>
+                <p class="text-muted mt-2 ">
+                    Review and manage your account details below. Keep your information up to date to ensure seamless
+                    access to all features.
+                </p>
             </div>
-            <div>
-                <h6 style="display: inline-block;">Last name:</h6> <span>{{user.last_name}}</span>
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <td class="text-start"><i class="fas fa-id-badge me-2 text-secondary"></i>First Name</td>
+                        <td class="text-end"><b>{{user.first_name}}</b></td>
+                    </tr>
+                    <tr>
+                        <td class="text-start"><i class="fas fa-id-badge me-2 text-secondary "></i>Last Name</td>
+                        <td class="text-end"><b>{{user.last_name}}</b></td>
+                    </tr>
+                    <tr>
+                        <td class="text-start"><i class="fas fa-envelope me-2 text-secondary"></i>Email</td>
+                        <td class="text-end"><b>{{user.email}}</b></td>
+                    </tr>
+                    <tr>
+                        <td class="text-start"><i class="fas fa-key me-2 text-secondary"></i>API key</td>
+                        <td class="text-end">
+                            {% if user.api_key %}
+                            <div class="d-flex align-items-center justify-content-end">
+                                <span id="api-key" class="api-key blurred me-2"><b>{{ user.api_key }}</b></span>
+                                <button id="toggle-api-key" type="button"
+                                    class="btn btn-sm btn-outline-secondary blur-btn" aria-pressed="false"
+                                    aria-label="Show API key" title="Show API key" data-visible="false">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <small>(click <a href="#">here for the API</a>)</small>
+                            {% else %}
+                            <span class="text-muted"><b>No API key</b></span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <div>
-                <h6 style="display: inline-block;">Email:</h6> <span>{{user.email}}</span>
-            </div>
-            <div>
-                <h6 style="display: inline-block;">Api key:</h6> <span>{{user.api_key}}</span>
+            <div class="text-end mt-4">
+                <a class="btn btn-outline-success btn-lg" href="{{ url_for('account.edit_user') }}">
+                    <i class="fas fa-edit me-2"></i>Edit Profile
+                </a>
             </div>
         </div>
-
     </div>
-        
+</div>
 {% endblock %}

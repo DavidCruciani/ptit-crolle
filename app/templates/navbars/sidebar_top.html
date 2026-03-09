@@ -1,0 +1,66 @@
+<!-- Main Navigation -->
+<div class="container-fluid p-2">
+    <nav class="navbar-expand-lg shadow-sm py-3  rounded-bottom">
+        <div class="d-flex justify-content-between">
+            <a href="/2" class="navbar-brand d-flex align-items-center">
+                <img src="{{ url_for('static', filename='image/crolle.png') }}" height="50" alt="RULEZET Logo"
+                    class="me-3">
+                <h4 class="mb-0">P'tit crolle</h4>
+            </a>
+
+            <!-- Navigation Menu -->
+            <ul class="navbar-nav d-flex align-items-center">
+                <li class="nav-item mx-2">
+                    <a href="/2" class="nav-link text-dark fw-semibold">
+                        <i class="fa-solid fa-house fa-fw me-1"></i> Home
+                    </a>
+                </li>
+
+                <!-- Profile Dropdown -->
+                <li class="nav-item dropdown mx-2">
+                    {% if current_user.is_authenticated %}
+                    <a class="nav-link dropdown-toggle text-dark fw-semibold" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user fa-fw me-1"></i> {{ current_user.username() }}
+                    </a>
+                    {% else %}
+                    <a class="nav-link dropdown-toggle text-dark fw-semibold" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user fa-fw me-1"></i> Profile
+                    </a>
+                    {% endif %}
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded">
+                        {% if current_user.is_authenticated %}
+                        <li>
+                            <a href="/account" class="dropdown-item">
+                                <i class="fa-solid fa-user "></i> Profil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/account/logout" class="dropdown-item">
+                                <i class="fa-solid fa-right-from-bracket "></i> Logout
+                            </a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a href="/account/register" class="dropdown-item">
+                                <i class="fa-solid fa-user-plus "></i> Register
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/account/login" class="dropdown-item">
+                                <i class="fa-solid fa-right-to-bracket "></i> Login
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                <button class="btn btn-link nav-link py-2 px-0 px-lg-2" id="bd-theme" type="button"
+                    onclick="toggleDarkMode()" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon" id="theme-icon"></i>
+                    <span class="d-lg-none ms-2">Changer le thème</span>
+                </button>
+            </ul>
+        </div>
+    </nav>
+</div>

@@ -27,6 +27,9 @@ class User(UserMixin, db.Model):
         if r.read_only:
             return True
         return False
+    
+    def username(self):
+        return f"{self.first_name} {self.last_name}"
 
     @property
     def password(self):

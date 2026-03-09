@@ -9,12 +9,12 @@ from wtforms.fields import (
     SubmitField,
     EmailField
 )
-from wtforms.validators import Email, InputRequired, Length
-
+from wtforms.validators import Email, InputRequired, Length, Regexp, Optional
 from ..db_class.db import User
 
 
 class LoginForm(FlaskForm):
+    """Log in form"""
     email = EmailField('Email', validators=[InputRequired(), Length(1, 64), Email()])
     password = PasswordField('Password', validators=[InputRequired()])
     remember_me = BooleanField('Keep me logged in')
@@ -22,9 +22,20 @@ class LoginForm(FlaskForm):
 
 
 class EditUserFrom(FlaskForm):
+    """Edit the user"""
     first_name = StringField('First name', validators=[InputRequired(), Length(1, 64)])
     last_name = StringField('Last name', validators=[InputRequired(), Length(1, 64)])
     email = EmailField('Email', validators=[InputRequired(), Length(1, 64), Email()])
+    password = PasswordField(
+        'Password',
+        validators=[
+            Optional(),
+            Length(min=8, max=64, message="Password must be between 8 and 64 characters."),
+            Regexp(r'.*[A-Z].*', message="Password must contain at least one uppercase letter."),
+            Regexp(r'.*[a-z].*', message="Password must contain at least one lowercase letter."),
+            Regexp(r'.*\d.*', message="Password must contain at least one digit.")
+        ]
+    )
 
     submit = SubmitField('Register')
 
@@ -34,3 +45,31 @@ class EditUserFrom(FlaskForm):
                 raise ValidationError('Email already registered. (Did you mean to '
                                     '<a href="{}">log in</a> instead?)'.format(
                                         url_for('account.index')))
+            
+
+class AddNewUserForm(FlaskForm):
+    """Creation form to create a user"""
+    first_name = StringField('First name', validators=[InputRequired()])
+    last_name = StringField('Last name', validators=[InputRequired()])
+    email = StringField('Email', validators=[InputRequired(), Email(message="Please enter a valid email address.")])
+    
+    password = PasswordField(
+        'Password',
+        validators=[
+            InputRequired(),
+            Length(min=8, max=64, message="Password must be between 8 and 64 characters."),
+            Regexp(r'.*[A-Z].*', message="Password must contain at least one uppercase letter."),
+            Regexp(r'.*[a-z].*', message="Password must contain at least one lowercase letter."),
+            Regexp(r'.*\d.*', message="Password must contain at least one digit.")
+        ]
+    )
+    
+    submit = SubmitField('Register')
+    def validate_email(self, field):
+        if User.query.filter_by(email=field.data).first():                
+            raise ValidationError(
+                'Email already registered. (Did you mean to '
+                '<a href="{}">log in</a> instead?)'.format(
+                    url_for('account.index')
+                )
+            )

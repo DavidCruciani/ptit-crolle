@@ -1,19 +1,7 @@
-<!-- 
-    Author: David Cruciani
--->
-
-{% extends 'base_2.html' %}
-
+{% extends base_layout %}
 {% block content %}
-    <div>
-        <header>
-        </header>
-        <h1>P'tit Crolle</h1>
-    </div>
-
-    <hr>
-    <br/>
-    <br/>
+<div class="container">
+    <h1>P'tit Crolle</h1>
     <div class="card card-body">
         <div class="d-flex w-100 justify-content-evenly">
             <div>
@@ -21,23 +9,5 @@
             </div>
         </div>
     </div>
-    <br/>
-
-    <span id="project-version"><a href="https://github.com/DavidCruciani/ptit-crolle"><i>version 0.0.1</i></a></span>
-{% endblock %}
-
-{% block script %}
-<script type="module">
-    const { createApp} = Vue
-    import {message_list} from '/static/js/toaster.js'
-    createApp({
-        delimiters: ['[[', ']]'],
-        setup() {
-            return {
-                message_list
-            }
-        }
-    }).mount('#main-container')
-
-</script>
+</div>
 {% endblock %}

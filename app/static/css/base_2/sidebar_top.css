@@ -12,3 +12,8 @@
 [data-bs-theme="dark"] .nav-link:hover {
     color: #3d8bfd !important; 
 }
+
+.logo {
+    transition: all 0.3s ease;
+    filter: var(--logo-filter);
+}

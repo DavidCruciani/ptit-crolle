@@ -63,3 +63,8 @@ main#main-container {
 #sidebar:not(.show) .sidebar-menu-wrapper {
     opacity: 0;
 }
+
+.logo {
+    transition: all 0.3s ease;
+    filter: var(--logo-filter);
+}

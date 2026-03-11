@@ -1,13 +1,85 @@
 {% extends base_layout %}
 {% block content %}
-<div class="container">
-    <h1>P'tit Crolle</h1>
-    <div class="card card-body">
-        <div class="d-flex w-100 justify-content-evenly">
-            <div>
-                Super website
+<div class="container mt-4" v-cloak>
+    <loading-spinner :active="!page_is_loading" text="Loading..."></loading-spinner>
+    <div v-if="page_is_loading">
+        <h1>P'tit Crolle</h1>
+        <div class="card card-body">
+            <div class="d-flex w-100 justify-content-evenly">
+                <div>
+                    Super website
+                </div>
+            </div>
+            <div class="d-flex w-100 justify-content-center" style="margin-top: 600px;">
+                <pagination :current-page="current_page" :total-pages="total_pages" @change-page="handlePageChange">
+                </pagination>
             </div>
         </div>
     </div>
 </div>
+
+{% endblock %}
+{% block script %}
+<script type="module">
+    const { createApp, ref, onMounted } = Vue;
+    import { message_list, create_message } from '../static/js/toaster.js';
+    import Pagination from '../static/js/components/pagination.js';
+    import LoadingSpinner from '../static/js/components/loading-spinner.js';
+
+    createApp({
+        delimiters: ['[[', ']]'],
+        components: {
+            Pagination,
+            LoadingSpinner
+        },
+        setup() {
+            /**
+             * #######################
+             * #    Init the page    #
+             * #######################
+             * */
+            const page_is_loading = ref(false)
+
+            async function init() {
+                // let 1 sec before loading the page remove it when you will fetch real data to avoid seeing the loading spinner too much
+                await new Promise(resolve => setTimeout(resolve, 1000))
+                await Promise.all([
+                    create_message("Welcome to P'tit Crolle !", "success-subtle", true, "fas fa-check"),
+                    // call functions to fetch data ...
+                ])
+                page_is_loading.value = true
+            }
+
+            onMounted(() => {
+                init()
+            })
+
+            /**
+             * #######################
+             * #    Pagination       #
+             * #######################
+             * */
+            const current_page = ref(1);
+            const total_pages = ref(20);
+
+            function handlePageChange(page) {
+                current_page.value = page;
+                // fetch_your_data(newPage);
+                // call functions to fetch data ...
+            }
+
+            return {
+                message_list,
+                create_message,
+                page_is_loading,
+
+                // Pagination
+                current_page,
+                total_pages,
+                handlePageChange
+
+            }
+        },
+    }).mount('#main-container');
+</script>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends base_layout %}
 {% block content %}
 <div class="container mt-4" v-cloak>
-    <loading-spinner :active="!page_is_loading" text="Loading..."></loading-spinner>
+    <loading-bar :active="!page_is_loading"></loading-bar>
     <div v-if="page_is_loading">
         <h1>P'tit Crolle</h1>
         <div class="card card-body">
@@ -24,13 +24,12 @@
     const { createApp, ref, onMounted } = Vue;
     import { message_list, create_message } from '../static/js/toaster.js';
     import Pagination from '../static/js/components/pagination.js';
-    import LoadingSpinner from '../static/js/components/loading-spinner.js';
-
+    import LoadingBar from '../static/js/components/loading-bar.js';
     createApp({
         delimiters: ['[[', ']]'],
         components: {
             Pagination,
-            LoadingSpinner
+            LoadingBar
         },
         setup() {
             /**

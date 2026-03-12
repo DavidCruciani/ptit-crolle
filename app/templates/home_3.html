@@ -1,7 +1,7 @@
 {% extends base_layout %}
 {% block content %}
-<div class="container mt-4" v-cloak>
-    <loading-bar :active="!page_is_loading"></loading-bar>
+<div class="container " v-cloak>
+    <orbital-loader :active="!page_is_loading" text="Loading..."></orbital-loader>
     <div v-if="page_is_loading">
         <h1>P'tit Crolle</h1>
         <div class="card card-body">
@@ -10,7 +10,7 @@
                     Super website
                 </div>
             </div>
-            <div class="d-flex w-100 justify-content-center" style="margin-top: 750px;">
+            <div class="d-flex w-100 justify-content-center" style="margin-top: 600px;">
                 <pagination :current-page="current_page" :total-pages="total_pages" @change-page="handlePageChange">
                 </pagination>
             </div>
@@ -21,15 +21,15 @@
 {% endblock %}
 {% block script %}
 <script type="module">
-    const { createApp, ref, onMounted } = Vue;
+    const { createApp, ref, onMounted, nextTick } = Vue;
     import { message_list, create_message } from '../static/js/toaster.js';
     import Pagination from '../static/js/components/pagination.js';
-    import LoadingBar from '../static/js/components/loading-bar.js';
+    import OrbitalLoader from '../static/js/components/loading-orbital.js';
     createApp({
         delimiters: ['[[', ']]'],
         components: {
             Pagination,
-            LoadingBar
+            OrbitalLoader
         },
         setup() {
             /**

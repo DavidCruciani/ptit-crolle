@@ -21,7 +21,7 @@
 {% endblock %}
 {% block script %}
 <script type="module">
-    const { createApp, ref, onMounted } = Vue;
+    const { createApp, ref, onMounted, nextTick } = Vue;
     import { message_list, create_message } from '../static/js/toaster.js';
     import Pagination from '../static/js/components/pagination.js';
     import LoadingSpinner from '../static/js/components/loading-spinner.js';

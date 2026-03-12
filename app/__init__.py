@@ -41,6 +41,8 @@ def create_app():
         from flask import session
         if session.get('ui_version') == 2:
             layout = 'base_2.html'
+        elif session.get('ui_version') == 3:
+            layout = 'base_3.html'
         else:
             layout = 'base.html'
         return dict(base_layout=layout)

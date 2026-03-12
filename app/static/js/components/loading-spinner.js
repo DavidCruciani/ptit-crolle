@@ -8,7 +8,7 @@ export default {
     template: `
         <transition name="fade">
             <div v-if="active" 
-                 :class="overlay ? 'spinner-overlay' : 'my-5 py-5'" 
+                 :class="overlay ? 'spinner-overlay' : 'spinner-centered'" 
                  class="text-center d-flex flex-column align-items-center justify-content-center">
                 
                 <div class="position-relative d-flex align-items-center justify-content-center">

@@ -18,6 +18,12 @@ def home_2():
     session['ui_version'] = 2  
     return render_template("home_2.html")
 
+@home_blueprint.route("/3")
+def home_3():
+    session['ui_version'] = 3  
+    return render_template("home_3.html")
+
+
 # @home_blueprint.route("/3")
 # def home_3():
 #     session['ui_version'] = 3  

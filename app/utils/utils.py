@@ -47,6 +47,8 @@ def redirect_to_home():
     version = session.get('ui_version', 1)
     if version == 2:
         return redirect(url_for('home.home_2'))
-    # elif version == 3:
-    #     return redirect(url_for('home.home_3'))......
+    elif version == 3:
+        return redirect(url_for('home.home_3'))
+    # elif version == 4:
+    #     return redirect(url_for('home.home_4'))......
     return redirect(url_for('home.home'))

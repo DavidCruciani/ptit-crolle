@@ -31,20 +31,14 @@ def edit_user_core(form_dict, id) -> tuple[User, str]:
 
 def create_user_core(form_dict):
     """Create the user to the DB"""
-    try:
-        # Check if the user already exists
-        if User.query.filter_by(email=form_dict["email"]).first():
-            return None, "User already exists"
-        user = User(
-            first_name=form_dict["first_name"],
-            last_name=form_dict["last_name"],
-            email=form_dict["email"],
-            password=form_dict["password"],
-            role_id=form_dict["role_id"],
-            api_key = generate_api_key()
-        )
-        db.session.add(user)
-        db.session.commit()
-        return user, "Registration successfully, you can now login"
-    except Exception as e:
-        return None, f"Error during registration"
+    user = User(
+        first_name=form_dict["first_name"],
+        last_name=form_dict["last_name"],
+        email=form_dict["email"],
+        password=form_dict["password"],
+        role_id=form_dict["role_id"],
+        api_key = generate_api_key()
+    )
+    db.session.add(user)
+    db.session.commit()
+    return user

@@ -36,6 +36,10 @@ def create_app():
     app.register_blueprint(home_blueprint, url_prefix="/")
     app.register_blueprint(account_blueprint, url_prefix="/account")
 
+    from .api import api_blueprint
+    csrf.exempt(api_blueprint)
+    app.register_blueprint(api_blueprint)
+
     @app.context_processor
     def inject_layout():
         from flask import session
